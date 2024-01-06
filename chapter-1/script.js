@@ -49,10 +49,63 @@ function displayForward(words) {
   let forwardWords = words.map(word => word);
   return forwardWords
 }
-function displayBackword(words){
-  let backwordWords = words.map(word => word.split('').reverse().join('') );
+function displayBackword(words) {
+  let backwordWords = words.map(word => word.split('').reverse().join(''));
   return backwordWords
 }
 
 console.log(displayForward(words))
 console.log(displayBackword(words))
+
+//Modify the weeklyTemps object in the chapter so that it stores a month’s worth of data using a two-dimensional array. Create functions to display the monthly average, a specific week’s average, and all the weeks’ averages.
+
+function MonthTemps() {
+  this.dataStore = [];
+  this.addWeek = addWeek;
+  this.monthlyAverage = monthlyAverage;
+  this.weeklyAverage = weeklyAverage;
+};
+
+function addWeek(weeklyTempArr) {
+  this.dataStore.push(weeklyTempArr);
+};
+
+function monthlyAverage() {
+  let monthlyTotalTemp = 0;
+  let monthlyAverage = 0;
+  for (let row = 0; row < this.dataStore.length; row++) {
+    for (let col = 0; col < this.dataStore[row].length; col++) {
+      monthlyTotalTemp += this.dataStore[row][col];
+    }
+  }
+  monthlyAverage = monthlyTotalTemp / this.dataStore.flat().length
+  return { monthlyAverage, monthlyTotalTemp }
+}
+
+function weeklyAverage() {
+  let totalWeeklyAverage = 0;
+  for (let row = 0; row < this.dataStore.length; row++) {
+    let weeklyTotalTemp = 0
+    for (let col = 0; col < this.dataStore[row].length; col++) {
+      weeklyTotalTemp += this.dataStore[row][col]
+    }
+    totalWeeklyAverage= weeklyTotalTemp / this.dataStore[row].length
+  }
+
+  return totalWeeklyAverage
+}
+
+const month = new MonthTemps();
+month.addWeek([10, 20, 10, 10, 10]);
+month.addWeek([10, 10, 30, 10, 10]);
+month.addWeek([10, 10, 10, 10, 10]);
+console.log(month)
+console.log(month.monthlyAverage())
+console.log(month.weeklyAverage())
+
+
+
+
+
+
+
