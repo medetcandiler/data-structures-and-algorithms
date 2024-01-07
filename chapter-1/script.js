@@ -83,25 +83,41 @@ function monthlyAverage() {
 }
 
 function weeklyAverage() {
-  let totalWeeklyAverage = 0;
+  let weeklyAverages = [];
   for (let row = 0; row < this.dataStore.length; row++) {
     let weeklyTotalTemp = 0
     for (let col = 0; col < this.dataStore[row].length; col++) {
       weeklyTotalTemp += this.dataStore[row][col]
     }
-    totalWeeklyAverage= weeklyTotalTemp / this.dataStore[row].length
+    let perWeekAverage = weeklyTotalTemp / this.dataStore[row].length;
+    weeklyAverages.push(perWeekAverage)
   }
 
-  return totalWeeklyAverage
+  return weeklyAverages
 }
 
 const month = new MonthTemps();
 month.addWeek([10, 20, 10, 10, 10]);
 month.addWeek([10, 10, 30, 10, 10]);
-month.addWeek([10, 10, 10, 10, 10]);
+month.addWeek([10, 10, 10, 10, 10])
 console.log(month)
 console.log(month.monthlyAverage())
 console.log(month.weeklyAverage())
+
+// Create an object that stores individual letters in an array and has a function for displaying the letters in a single word.
+function Letters() {
+  this.letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+}
+
+Letters.prototype.display = function() {
+  const words = this.letters.join('');
+  console.log(words)
+}
+
+
+const letterInstance = new Letters();
+console.log(letterInstance)
+
 
 
 
