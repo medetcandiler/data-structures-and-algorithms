@@ -112,11 +112,12 @@ function Letters() {
 Letters.prototype.display = function() {
   const words = this.letters.join('');
   console.log(words)
+  return words
 }
 
 
 const letterInstance = new Letters();
-console.log(letterInstance)
+letterInstance.display();
 
 
 
